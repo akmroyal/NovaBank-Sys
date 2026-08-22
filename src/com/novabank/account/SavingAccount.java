@@ -1,4 +1,4 @@
-package BankSystem;
+package com.novabank.account;
 
 public class SavingAccount extends AccountServices{
     double interestRate = 4.5;

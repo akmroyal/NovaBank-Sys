@@ -1,4 +1,4 @@
-package BankSystem;
+package com.novabank.account;
 
 public class AccountServices {
     protected double balance;
