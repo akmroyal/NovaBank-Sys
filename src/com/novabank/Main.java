@@ -1,15 +1,35 @@
 package com.novabank;
 
-import com.novabank.account.SavingBankAccount;
+
+import com.novabank.account.BankAccount;
+import com.novabank.customer.Customer;
+import com.novabank.account.AccounService;
 
 // nova bank - System
 public class Main {
     public static void main(String[] args) {
-        SavingBankAccount a1 = new SavingBankAccount(5000.00, "Tulsi");
+        try {
+            Customer customer = new Customer("Indramani", "indra@gmail.com", "9034823395");
 
-        System.out.println("Withdraw Successful, Balance : " + a1.withdraw(3000));
-        System.out.println(a1.getBalance());
-        System.out.println(a1.addInterest());
+            // Create Account Service
+            AccounService service = new AccounService();
 
+            // Open savings Account
+            BankAccount savings = service.openSavingsAccount(customer, 5000);
+            service.printAccountDetails(savings);
+
+            // Deposit
+            service.deposit(savings, 300);
+            service.printAccountDetails(savings);
+
+            // Withdraw
+            service.withdraw(savings, 1200);
+            service.printAccountDetails(savings);
+
+            service.withdraw(savings, 5000);
+
+        }catch (IllegalArgumentException e){
+            System.out.println("Something went wrong !! : " + e.getMessage());
+        }
     }
 }
