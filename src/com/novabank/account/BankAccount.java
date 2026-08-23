@@ -1,71 +1,65 @@
 package com.novabank.account;
 
-public class BankAccount {
-    protected double balance;
-    private String accountHolder;
-    private Long accountNumber;
 
-    // Initial start of account number
-    private static Long initialNum = 1000001L;
+import com.novabank.common.util.AccountNumGenerator;
+import com.novabank.customer.Customer;
 
-    public BankAccount(double openingBalance, String accountHolder){
-        if (openingBalance < 0){
-            throw new IllegalArgumentException("Opening balance cannot be negative.");
-        }
+public abstract class BankAccount {
+    private double balance;
+    private String accountNumber;
+    private Customer accountHolder;
 
-        if (accountHolder == null || accountHolder.isBlank()){
+    public BankAccount(Customer accountHolder, double initalBalance){
+        if (accountHolder == null){
             throw new IllegalArgumentException("Account holder cannot be null.");
         }
 
-        // store in accountNumber
-        this.accountNumber = accountNumGenerator();
-        this.accountHolder = accountHolder;
-        this.balance = openingBalance;
-    }
-
-    private Long accountNumGenerator(){
-        initialNum++;
-        this.accountNumber = initialNum;
-        return initialNum;
-    }
-
-    public double getBalance(){
-        return balance;
-    }
-
-    public double setBalance(double amount){
-        if (amount < 0){
-            throw new IllegalArgumentException("Amount cannot be negative.");
+        if (initalBalance < 0){
+            throw new IllegalArgumentException("Intial balance cannot be negative.");
         }
 
-        this.balance = amount;
-        return balance;
+        // Value storing
+        this.accountHolder = accountHolder;
+        this.accountNumber = String.valueOf(AccountNumGenerator.generate());
+        this.balance = initalBalance;
+
     }
 
-
-    public String getAccountHolder(){
-        return accountHolder;
-    }
-
+    // Deposit an amount
     public double deposit(double amount){
-        if (amount < 0){
-            throw new IllegalArgumentException("Amount cannot be negative.");
+        if (amount <= 0){
+            throw new IllegalArgumentException("Amount cannot be negative or zero");
         }
 
         this.balance += amount;
         return balance;
     }
 
-    public double withdraw(double amount){
-        if (amount < 0 || amount > balance){
-            throw new IllegalArgumentException("Amount should be withdrawn. Please re-Enter");
-        }
+    // Withdraw an amount
+    public abstract double withdraw(double amount);
 
-        this.balance -= amount;
+    // Get balance
+    public double getBalance(){
         return balance;
     }
 
-    public Long getAccountNumber(){
+    // set Balance
+    protected void setBalance(double balance){
+        this.balance = balance;
+    }
+
+    // get an Account Holder
+    public Customer getAccountHolder(){
+        return accountHolder;
+    }
+
+    // get an Account Number
+    public String getAccountNumber(){
         return accountNumber;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Account[%s] Holder: [%s], Balance: ₹%.2f", accountNumber, accountHolder.getName(), balance);
     }
 }

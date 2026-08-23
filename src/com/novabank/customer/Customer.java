@@ -25,15 +25,17 @@ public class Customer {
         }
 
         // email validation
-        if (email.contains("@") && email.contains(".com")){
+        if (!email.contains("@") || !email.contains(".")){
             throw new IllegalArgumentException("Invalid email address");
         }
 
         // mobile validation
-        if (mobileNumber.length() <= 13){
+        if (mobileNumber.length() != 10){
             throw new IllegalArgumentException("Invalid mobile number");
         }
 
-
+        this.name = name;
+        this.email = email;
+        this.mobileNumber = mobileNumber;
     }
 }
