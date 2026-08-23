@@ -1,6 +1,6 @@
 package com.novabank.account;
 
-public class AccountServices {
+public class BankAccount {
     protected double balance;
     private String accountHolder;
     private Long accountNumber;
@@ -8,7 +8,7 @@ public class AccountServices {
     // Initial start of account number
     private static Long initialNum = 1000001L;
 
-    public AccountServices(double openingBalance, String accountHolder){
+    public BankAccount(double openingBalance, String accountHolder){
         if (openingBalance < 0){
             throw new IllegalArgumentException("Opening balance cannot be negative.");
         }

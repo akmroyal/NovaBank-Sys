@@ -1,10 +1,10 @@
 package com.novabank.account;
 
-public class SavingAccount extends AccountServices{
+public class SavingBankAccount extends BankAccount {
     double interestRate = 4.5;
     double minBalance = 1000.0;
 
-    public SavingAccount(double amount, String accountHolder){
+    public SavingBankAccount(double amount, String accountHolder){
         super(amount, accountHolder);
     }
 
