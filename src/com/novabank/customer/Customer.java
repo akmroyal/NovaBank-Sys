@@ -1,9 +1,9 @@
 package com.novabank.customer;
 
 public class Customer {
-    private String name;
-    private String email;
-    private String mobileNumber;
+    private final String name;
+    private final String email;
+    private final String mobileNumber;
 
 
     public String getMobileNumber() {

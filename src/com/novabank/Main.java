@@ -3,7 +3,7 @@ package com.novabank;
 
 import com.novabank.account.BankAccount;
 import com.novabank.customer.Customer;
-import com.novabank.account.AccounService;
+import com.novabank.account.AccountService;
 
 // nova bank - System
 public class Main {
@@ -12,7 +12,7 @@ public class Main {
             Customer customer = new Customer("Indramani", "indra@gmail.com", "9034823395");
 
             // Create Account Service
-            AccounService service = new AccounService();
+            AccountService service = new AccountService();
 
             // Open savings Account
             BankAccount savings = service.openSavingsAccount(customer, 5000);

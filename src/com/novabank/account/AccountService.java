@@ -2,7 +2,7 @@ package com.novabank.account;
 
 import com.novabank.customer.Customer;
 
-public class AccounService {
+public class AccountService {
     // Open Saving Account
     public BankAccount openSavingsAccount(Customer accountHolder, double amount){
         return new SavingAccount(accountHolder, amount);
