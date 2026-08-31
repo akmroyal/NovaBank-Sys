@@ -29,6 +29,7 @@ public class SavingAccount extends BankAccount {
         return getBalance();
     }
 
+    // make sure for interest
     public double addInterest(){
         double bal = getBalance();
         double interestAmount = (bal * interestRate) / 100;
